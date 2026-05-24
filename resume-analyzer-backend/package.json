@@ -1,0 +1,42 @@
+{
+  "name": "resume-analyzer-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Resume Analyzer",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js",
+    "resume-worker": "nodemon src/worker/resume.worker.js"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "backend"
+  ],
+  "author": "Your Name",
+  "license": "ISC",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "bcryptjs": "^3.0.3",
+    "bullmq": "^5.71.1",
+    "compute-cosine-similarity": "^1.1.0",
+    "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.2.1",
+    "ioredis": "^5.10.1",
+    "joi": "^18.0.2",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.2.1",
+    "multer": "^2.1.1",
+    "node-fetch": "^3.3.2",
+    "openai": "^6.22.0",
+    "pdf-parse": "^1.1.1",
+    "redis": "^5.11.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
