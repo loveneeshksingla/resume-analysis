@@ -10,7 +10,7 @@ export async function indexResume({
     candidateName,
     resumeText,
 }) {
-    await ResumeChunk.deleteMany({ resumeId });
+    await ResumeChunk.deleteMany({ userId });
 
     const sectionChunks = chunkResume(resumeText);
     const embeddingChunks = buildEmbeddingChunks(sectionChunks);
