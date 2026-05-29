@@ -7,8 +7,7 @@ export function buildEmbeddingChunks(sectionChunks) {
     const experienceChunks =
         parseExperienceChunks(sectionChunks);
 
-    const projectChunks =
-        parseProjectChunks(sectionChunks);
+    const projectChunks = parseProjectChunks(sectionChunks);
 
     // Keep SUMMARY, SKILLS, EDUCATION, CERTIFICATIONS etc.
     sectionChunks

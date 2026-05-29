@@ -24,6 +24,11 @@ export async function searchCandidates({
     const indexedChunks = chunks.map((chunk) => ({
         candidateId: chunk.resumeId.toString(),
         candidateName: chunk.candidateName,
+        section: chunk.section,
+        company: chunk.company,
+        role: chunk.role,
+        project: chunk.project,
+        duration: chunk.duration,
         content: chunk.content,
         embedding: chunk.embedding,
     }));
