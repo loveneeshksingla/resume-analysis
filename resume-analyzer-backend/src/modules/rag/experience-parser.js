@@ -1,14 +1,29 @@
+// experience-parser.js
+
 function isDateLine(text) {
+  const line = text.trim();
+
   return (
-    /\b\d{2}\/\d{4}\b/.test(text) ||
-    /\b\d{4}\s*[-–]\s*\d{4}\b/.test(text) ||
-    /\b\d{2}\/\d{4}\s*[-–]\s*(Present|Current|\d{2}\/\d{4})\b/i.test(text)
+    /\b\d{1,2}[\/-]\d{4}\b/.test(line) ||
+    /\b\d{4}\s*[-–]\s*\d{4}\b/.test(line) ||
+    /\b\d{1,2}[\/-]\d{4}\s*[-–]\s*(Present|Current|\d{1,2}[\/-]\d{4})\b/i.test(
+      line
+    ) ||
+    /\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)/i.test(line)
+  );
+}
+
+function isBullet(line) {
+  return (
+    line.startsWith("•") ||
+    line.startsWith("-") ||
+    line.startsWith("*")
   );
 }
 
 export function parseExperienceChunks(chunks) {
   const experienceSection = chunks.find(
-    chunk => chunk.section === "EXPERIENCE"
+    (chunk) => chunk.section === "EXPERIENCE"
   );
 
   if (!experienceSection) {
@@ -17,7 +32,7 @@ export function parseExperienceChunks(chunks) {
 
   const lines = experienceSection.content
     .split("\n")
-    .map(line => line.trim())
+    .map((line) => line.trim())
     .filter(Boolean);
 
   const jobs = [];
@@ -27,17 +42,21 @@ export function parseExperienceChunks(chunks) {
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
 
+    // New job starts whenever we find a date line
     if (isDateLine(line)) {
       if (currentJob) {
         jobs.push(currentJob);
       }
 
+      const company = lines[i - 2] || "";
+      const role = lines[i - 1] || "";
+
       currentJob = {
         section: "EXPERIENCE",
-        company: lines[i - 2] || "",
-        role: lines[i - 1] || "",
+        company,
+        role,
         duration: line,
-        content: []
+        content: [],
       };
 
       continue;
@@ -54,10 +73,10 @@ export function parseExperienceChunks(chunks) {
 
   return jobs.map((job, index) => ({
     id: index + 1,
-    section: job.section,
+    section: "EXPERIENCE",
     company: job.company,
     role: job.role,
     duration: job.duration,
-    content: job.content.join("\n").trim()
+    content: job.content.join("\n").trim(),
   }));
 }
