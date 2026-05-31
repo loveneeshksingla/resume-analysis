@@ -5,6 +5,11 @@ export const RecruiterAnalysisSchema = z.object({
     z.object({
       name: z.string(),
       matchScore: z.string(),
+
+      matchedSkills: z
+        .array(z.string())
+        .optional(),
+
       summary: z.string(),
 
       strengths: z.array(z.string()),

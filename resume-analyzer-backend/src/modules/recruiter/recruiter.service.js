@@ -8,10 +8,7 @@ import { buildRagPrompt } from "../rag/rag.prompt.js";
 import { generateAIResponse } from "../../shared/ai/ai.service.js";
 import { RecruiterAnalysisSchema } from "./recruiter-res-analysis.schema.js";
 
-export async function searchCandidates({
-    recruiterQuery,
-    userId,
-}) {
+export async function searchCandidates({ recruiterQuery, userId }) {
     const chunks = await ResumeChunk.find().lean();
 
     if (!chunks.length) {
@@ -39,10 +36,12 @@ export async function searchCandidates({
         topK: 10,
     });
 
+    console.log("Relevant Chunks:", relevantChunks);
     const rankedCandidates = rankCandidates(relevantChunks);
 
     const retrievedContext = buildCandidateContext(rankedCandidates);
 
+    console.log(retrievedContext, "<====retrievedContext=======")
     const messages = buildRagPrompt({ recruiterQuery, retrievedContext });
 
     const aiResult = await generateAIResponse(
