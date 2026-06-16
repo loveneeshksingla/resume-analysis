@@ -36,12 +36,12 @@ export async function searchCandidates({ recruiterQuery, userId }) {
         topK: 10,
     });
 
-    console.log("Relevant Chunks:", relevantChunks);
+    // console.log("Relevant Chunks:", relevantChunks);
     const rankedCandidates = rankCandidates(relevantChunks);
 
     const retrievedContext = buildCandidateContext(rankedCandidates);
 
-    console.log(retrievedContext, "<====retrievedContext=======")
+    // console.log(retrievedContext, "<====retrievedContext=======")
     const messages = buildRagPrompt({ recruiterQuery, retrievedContext });
 
     const aiResult = await generateAIResponse(
