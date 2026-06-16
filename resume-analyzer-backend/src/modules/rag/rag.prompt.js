@@ -64,10 +64,6 @@ If information is unavailable, state:
 
 Use retrieval scores as supporting evidence but prioritize actual resume content.
 
-Always include candidateId exactly as provided in Candidate ID.
-Do not use candidate name as candidateId.
-Do not use Candidate # number as candidateId.
-
 ==================================================
 RECOMMENDATION RULES
 ==================================================
@@ -110,8 +106,6 @@ Return ONLY valid JSON.
 {
   "candidates": [
     {
-      "candidateId": "candidate id from Candidate ID field",
-
       "name": "candidate name",
 
       "matchScore": "85.4%",

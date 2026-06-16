@@ -53,18 +53,20 @@ export function buildCandidateContext(
           "\n\n-----------------------------\n\n"
         );
 
-return `
+      return `
 Candidate #${index + 1}
-
-Candidate ID: ${candidate.candidateId}
 
 Name: ${candidate.candidateName}
 
 Overall Match Score:
-${(candidate.averageSimilarity * 100).toFixed(2)}%
+${(
+        candidate.averageSimilarity * 100
+      ).toFixed(2)}%
 
 Top Match Score:
-${(candidate.topMatchScore * 100).toFixed(2)}%
+${(
+        candidate.topMatchScore * 100
+      ).toFixed(2)}%
 
 Matched Sections:
 ${candidate.matchedSections?.join(", ") || "N/A"}

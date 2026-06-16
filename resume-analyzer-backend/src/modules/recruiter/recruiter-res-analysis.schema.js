@@ -1,25 +1,22 @@
 import { z } from "zod";
 
 export const RecruiterAnalysisSchema = z.object({
-    candidates: z.array(
-        z.object({
-            candidateId: z.string(),
+  candidates: z.array(
+    z.object({
+      name: z.string(),
+      matchScore: z.string(),
 
-            name: z.string(),
+      matchedSkills: z
+        .array(z.string())
+        .optional(),
 
-            matchScore: z.string(),
+      summary: z.string(),
 
-            matchedSkills: z
-                .array(z.string())
-                .optional(),
+      strengths: z.array(z.string()),
 
-            summary: z.string(),
+      missingSkills: z.array(z.string()),
 
-            strengths: z.array(z.string()),
-
-            missingSkills: z.array(z.string()),
-
-            recommendation: z.string(),
-        })
-    ),
+      recommendation: z.string(),
+    })
+  ),
 });
