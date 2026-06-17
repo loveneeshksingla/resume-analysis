@@ -1,6 +1,15 @@
+import mongoose from "mongoose";
 import ResumeChunk from "../resume/resume-chunk.model.js";
 
 export async function getCandidateDetails({ candidateId }) {
+    if (!mongoose.Types.ObjectId.isValid(candidateId)) {
+        return {
+            candidate: null,
+            message: "Invalid candidateId. candidateId must be the Mongo resumeId from searchCandidates result.",
+            receivedCandidateId: candidateId,
+        };
+    }
+
     const chunks = await ResumeChunk.find({
         resumeId: candidateId,
     }).lean();

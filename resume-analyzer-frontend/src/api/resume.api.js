@@ -4,7 +4,7 @@ const API = axios.create({
   baseURL: "http://localhost:8000/api", // your backend
 });
 
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMzE4OTU3MTkyMWQyNzljOWZkNWM2NCIsImlhdCI6MTc4MTYzMTMxOSwiZXhwIjoxNzgyMjM2MTE5fQ.vsg0shkgw26dx4RKKtaHBn0ZKcdfi4vz4Addwx-RQFE";
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhMzE5ZGYyOWY3ODllYjViMWI5NzhlOSIsImlhdCI6MTc4MTYzNjU5NSwiZXhwIjoxNzgyMjQxMzk1fQ.XxF1yI_Cla4IkGIqteAigV00ixtki76N0TC-bsfhSjI";
 
 // Upload resume
 export const uploadResume = (formData) =>

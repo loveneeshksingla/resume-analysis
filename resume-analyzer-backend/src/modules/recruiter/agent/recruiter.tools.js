@@ -20,13 +20,13 @@ export const recruiterTools = [
         type: "function",
         function: {
             name: "getCandidateDetails",
-            description: "Get full resume details for a specific candidate by candidateId.",
+            description: "Get full resume details for a specific candidate. IMPORTANT: You MUST use the exact candidateId from the searchCandidates results. The candidateId is a MongoDB ObjectId string (like '507f1f77bcf86cd799439011'), NOT a UUID. Always copy the exact candidateId from previous search results - do NOT generate or invent IDs.",
             parameters: {
                 type: "object",
                 properties: {
                     candidateId: {
                         type: "string",
-                        description: "Candidate resume id",
+                        description: "Exact candidateId from searchCandidates results (MongoDB ObjectId format). Example: '507f1f77bcf86cd799439011'",
                     },
                 },
                 required: ["candidateId"],
